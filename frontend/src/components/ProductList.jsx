@@ -77,17 +77,17 @@ const ProductList = () => {
           products.map((product, index) => (
             <div
               key={index}
-              className="flex flex-col gap-4 lg:flex-row bg-gray-200 p-4 rounded-lg"
+              className="flex gap-4 flex-row bg-gray-200 p-4 rounded-lg"
             >
-              <div className="flex items-center justify-center w-full">
+              <div className="flex items-start w-full lg:items-center lg:justify-center">
                 <img src={product.image} alt="" className="object-cover w-72" />
               </div>
               <div className="w-full flex flex-col gap-4">
-                <h1 className="text-xl font-bold">{product.title}</h1>
-                <h1 className="text-lg">
+                <h1 className="text-sm md:text-lg font-bold">{product.title}</h1>
+                <h1 className="text-sm md:text-lg">
                   color: <span className="font-semibold">{product.color}</span>
                 </h1>
-                <p className="">
+                <p className="hidden lg:block">
                   {expanded === product.id
                     ? product.description
                     : `${product.description.slice(0, maxLength)}...`}
@@ -99,7 +99,7 @@ const ProductList = () => {
                   </button>
                 </p>
                 <div className="flex flex-col w-full mt-auto">
-                  <h1 className="font-bold text-xl">£{product.price}</h1>
+                  <h1 className="font-bold text-lg lg:text-xl">£{product.price}</h1>
                   <div className="flex items-center lg:w-1/2 text-center justify-center py-2 px-4 rounded-full bg-purple-500 mt-4">
                     <button
                       onClick={() => handleCartItem(product)}

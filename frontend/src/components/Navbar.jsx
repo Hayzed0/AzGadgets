@@ -10,8 +10,8 @@ import { useSelector } from "react-redux";
 const Navbar = () => {
   const { cartItems, totalQuantity, totalPrice } = useSelector((state) => state.carts);
   return (
-    <nav className="p-4 flex flex-col lg:flex-row">
-      <div className="flex w-full items-center justify-between bg-white">
+    <nav className="p-4 flex flex-col lg:flex-row shadow-purple-200 shadow-sm bg-[#efdff9]">
+      <div className="flex w-full items-center justify-between p-2 ">
         <div className="flex flex-col w-full lg:items-center space-x-4 lg:flex-row">
           <Link to="/" className="flex justify-start">
             <img
@@ -52,7 +52,7 @@ const Navbar = () => {
         </div>
       </div>
       {/* mobile search input */}
-      <div className=" mt-2 relative flex rounded-full w-full  lg:hidden bg-gray-200 ">
+      <div className="mb-4 mt-2 relative flex rounded-full w-full  lg:hidden bg-gray-200 ">
         <input
           type="text"
           className="flex w-full rounded-full py-2 px-2 outline-none focus:ring-2 focus:ring-purple-500"

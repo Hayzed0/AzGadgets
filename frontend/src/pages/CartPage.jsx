@@ -12,6 +12,7 @@ import {
   clearCart,
 } from "../redux/features/cartSlice";
 import { Navigate, useNavigate } from "react-router";
+import { MdDeleteForever } from "react-icons/md"
 
 const paymentData = [
   { img: applePay },
@@ -49,7 +50,7 @@ const CartPage = () => {
                 <div className="flex w-full items-center justify-center">
                   <img src={item.image} alt={item.title} className="w-80" />
                 </div>
-                <div className="flex flex-col space-y-2">
+                <div className="mt-4 flex flex-col space-y-2 w-full">
                   <h1 className="font-semibold">{item.title}</h1>
                   <h1 className="font-semibold">Brand: {item.brand}</h1>
                   <h1 className="font-semibold">Color: {item.color}</h1>
@@ -70,12 +71,12 @@ const CartPage = () => {
                     </span>{" "}
                   </h1>
                 </div>
-                <div className="flex w-80 mt-auto">
+                <div className="flex mt-auto">
                   <button
                     onClick={() => handleRemoveCart(item._id)}
-                    className="px-6 w-full text-xs  py-2 rounded-full bg-red-500 text-white font-semibold cursor-pointer hover:ring-2 hover:ring-red-300"
+                    className="items-center p-2 rounded-full text-red-500 font-bold cursor-pointer hover:ring-1 hover:ring-red-300"
                   >
-                    Remove Item
+                    <MdDeleteForever  size={30} />
                   </button>
                 </div>
               </div>
@@ -84,7 +85,7 @@ const CartPage = () => {
         )}
       </div>
       {cartItems.length === 0 ? null : (
-        <div className="flex flex-col w-full space-y-6 border-2 max-h-140 border-purple-500 rounded-xl p-6 lg:w-1/5">
+        <div className=" mt-6 flex flex-col w-full space-y-6 border-2 max-h-140 border-purple-500 rounded-xl p-6 lg:w-1/5 lg:mt-0">
           <div className="flex flex-col space-y-6">
             <h1 className="text-2xl font-semibold">
               SubTotal: <span>£{totalPrice}</span>

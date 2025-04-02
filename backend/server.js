@@ -3,6 +3,8 @@ import cors from "cors";
 import "dotenv/config";
 import connectDb from "./config/db.js";
 import productRouter from "./routes/productRoutes.js";
+import userRouter from "./routes/userRoutes.js";
+import orderRouter from "./routes/orderRoutes.js";
 
 
 const app = express();
@@ -20,6 +22,8 @@ connectDb();
 
 
 app.use("/api/products", productRouter)
+app.use("/api/order", orderRouter)
+app.use("/api/user", userRouter)
 
 app.get("/", (req, res) => {
   res.send({ message: "app running" });
