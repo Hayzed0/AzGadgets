@@ -7,7 +7,7 @@ import nintendo from "../assets/banner-nitendo.webp";
 
 const Banner = () => {
   return (
-    <section className="flex flex-col mt-4">
+    <section className="flex flex-col mt-4 p-2">
       <div className="flex flex-col items-center gap-6 justify-between md:flex-row">
         <div className="flex w-full h-60 md:h-90 lg:h-auto">
           <img

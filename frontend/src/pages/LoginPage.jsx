@@ -26,7 +26,7 @@ const LoginPage = () => {
         text: "You have successfully login",
         icon: "success"
       })
-      navigate("/")
+      navigate("/checkout")
     } catch (error) {
       console.error(error.message)
       Swal.fire({
@@ -37,7 +37,7 @@ const LoginPage = () => {
     }
   }
   return (
-    <div className="flex flex-col items-center mx-auto w-full mt-12 p-4 lg:mt-24">
+    <div className="flex flex-col items-center mx-auto w-full mt-12 p-2 lg:mt-24">
       <div className="flex w-full  lg:max-w-[800px]">
         <div className="w-full hidden lg:block">
           <img src={loginImg} alt="" className="rounded-l-xl " />

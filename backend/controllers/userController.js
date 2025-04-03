@@ -6,7 +6,7 @@ import mongoose from "mongoose";
 const secretKey = process.env.JWT_SECRET_KEY;
 
 const generateToken = (userId) => {
-  const token = jwt.sign({ userId }, secretKey, {
+  const token = jwt.sign({userId}, secretKey, {
     expiresIn: "30d",
   });
   return token;
@@ -69,7 +69,6 @@ export const login = async (req, res) => {
 
 export const getUser = async (req, res) => {
   try {
-    console.log(req.user)
     const user = await userModel.findById(req.user.userId).select("-password");
     if (!user) {
       return res.status(404).send({ message: "no user found " });

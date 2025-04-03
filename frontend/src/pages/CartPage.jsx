@@ -85,7 +85,7 @@ const CartPage = () => {
         )}
       </div>
       {cartItems.length === 0 ? null : (
-        <div className=" mt-6 flex flex-col w-full space-y-6 border-2 max-h-140 border-purple-500 rounded-xl p-6 lg:w-1/5 lg:mt-0">
+        <div className=" mt-6 flex flex-col space-y-6 border-2 lg:max-h-140 w-full border-purple-500 rounded-xl p-6 lg:w-1/5 lg:mt-0">
           <div className="flex flex-col space-y-6">
             <h1 className="text-2xl font-semibold">
               SubTotal: <span>£{totalPrice}</span>

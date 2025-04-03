@@ -26,7 +26,7 @@ const RegisterPage = () => {
           title: "😮",
           text: "Registration Successful!!"
         })
-        navigate("/")
+        navigate("/checkout")
         setName("")
         setEmail("")
         setPassword("")

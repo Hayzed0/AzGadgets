@@ -1,35 +1,42 @@
 import React, { useEffect, useState } from "react";
 import Loader from "../components/Loader";
-import { Navigate, useParams } from "react-router";
+import { Navigate, useParams, Outlet } from "react-router";
 import api from "../config/api";
 
 const PrivateRoute = ({ children }) => {
-  const [loading, setLoading] = useState(false);
-  const token = localStorage.getItem("token");
-  const { id } = useParams();
+  const [loading, setLoading] = useState(true);
+  const [user, setUser] = useState(null);
 
-  const getUser = async () => {
-    try {
-      setLoading(true);
-      const res = await api.get(`/api/user/${id}`);
-      console.log(res.data);
+  useEffect(() => {
+    getCurrentUser();
+  }, []);
+
+  const getCurrentUser = async () => {
+    const token = localStorage.getItem("token");
+    if (!token) {
       setLoading(false);
+      return;
+    }
+    try {
+      const { data } = await api.get("/api/user", {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      });
+      setUser(data);
     } catch (error) {
+      setLoading(false);
       console.error(error.message);
+    } finally {
+      setLoading(false)
     }
   };
 
-  useEffect(() => {
-    if (id) {
-      getUser();
-    }
-  }, [id]);
-
   if (loading) {
-    return <Loader />
+    return <Loader />;
   }
 
-  return token ? children : <Navigate to="/login" replace />;
+  return user ? children : <Navigate to="/login" replace />;
 };
 
 export default PrivateRoute;

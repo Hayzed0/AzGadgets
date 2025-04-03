@@ -26,7 +26,7 @@ const orderSchema = new mongoose.Schema({
         state: String,
         zipcode: String,
     },
-    phone: {
+    phoneNumber: {
         type: String,
         required: true,
         trim: true

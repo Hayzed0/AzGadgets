@@ -4,12 +4,19 @@ import { v4 as uuidV4 } from "uuid";
 
 const stripeKey = process.env.STRIPE_SECRET_KEY;
 
-const stripe = new Stripe(stripeKey)
+const stripe = new Stripe(stripeKey);
 
 export const createOrder = async (req, res) => {
-  const { fullName, email, address, phone, productIds, totalPrice, totalQuantity, token } =
-    req.body;
-
+  const {
+    fullName,
+    email,
+    address,
+    phone,
+    productIds,
+    totalPrice,
+    totalQuantity,
+    token,
+  } = req.body;
   try {
     const customer = await stripe.customers.create({
       email: token.email,
@@ -22,13 +29,12 @@ export const createOrder = async (req, res) => {
         customer: customer.id,
         currency: "GBP",
         receipt_email: token.email,
-      },
-      {
-        idempotencyKey: uuidV4(),
+        description: "Order Payment",
+      }, {
+        idempotencyKey: uuidV4()
       }
     );
-
-    if (payment) {
+    if(payment){
       const order = new orderModel({
         fullName,
         email,
@@ -37,14 +43,16 @@ export const createOrder = async (req, res) => {
         productIds,
         totalPrice,
         totalQuantity,
-        transactionIds: uuidV4(),
-      });
+        transactionIds: "1234"
+      })
+
       await order.save()
 
-      return res.status(201).json(order)
+      return res.status(200).json(order)
     }
 
-  return res.status(400).send("payment failed")
+    res.status(400).send({message: "payment not successful"})
+    
   } catch (error) {
     res.status(500).send({ message: error.message });
   }

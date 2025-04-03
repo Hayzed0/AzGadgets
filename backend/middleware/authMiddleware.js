@@ -4,6 +4,7 @@ import userModel from "../models/userModel.js";
 const secretKey= process.env.JWT_SECRET_KEY
 
 export const protect = async(req, res, next) => {
+
     const token = req.headers['authorization']?.split(' ')[1];
 
     if(!token){
@@ -11,11 +12,7 @@ export const protect = async(req, res, next) => {
     }
     try {
         const decoded = jwt.verify(token, secretKey)
-
-        console.log(decoded.userId)
-           
             const user = await userModel.findById(decoded.userId).select("-password")
-            
             if(!user){
               return res.status(403).send({message: "user access forbidden"})
             }
