@@ -46,7 +46,6 @@ const orderSchema = new mongoose.Schema({
     },
     transactionIds: {
         type: String,
-        required: true,
     },
     totalQuantity: {
         type: Number,

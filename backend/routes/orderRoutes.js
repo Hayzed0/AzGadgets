@@ -1,11 +1,13 @@
 import express from "express"
-import { createOrder, getAnOrder } from "../controllers/orderController.js"
+import { cancelAnOrder, createOrder, getAnOrder, getPaymentStatus } from "../controllers/orderController.js"
 
 
 const orderRouter = express.Router()
 
 orderRouter.post("/create-order", createOrder)
-orderRouter.get('/get-order', getAnOrder)
+orderRouter.get('/get-order/:email', getAnOrder)
+orderRouter.get('/payment-status', getPaymentStatus)
+orderRouter.delete('/delete/:orderId', cancelAnOrder)
 
 
 export default orderRouter

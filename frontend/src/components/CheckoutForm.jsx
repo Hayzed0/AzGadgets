@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
-import StripeCheckout from "react-stripe-checkout";
 import api from "../config/api";
+import { loadStripe } from "@stripe/stripe-js";
 
 const CheckoutForm = () => {
   const [fullName, setFullName] = useState("");
@@ -14,56 +14,44 @@ const CheckoutForm = () => {
   const [zipcode, setZipcode] = useState("");
   const [loading, setLoading] = useState(false);
   const stripePublishableKey = import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY;
-  const user = JSON.parse(localStorage.getItem("user"))
-
+  const user = JSON.parse(localStorage.getItem("user"));
   const { totalQuantity, totalPrice, cartItems } = useSelector(
     (state) => state.carts
   );
 
-    const onToken = async (token) => {
-      if (
-        !fullName ||
-        !email ||
-        !phoneNumber ||
-        !street ||
-        !city ||
-        !country ||
-        !state ||
-        !zipcode
-      ) {
-        alert("fill all details");
-        return;
-      }
-      const orderDetails = {
-        fullName: user.name,
-        email: user.email,
-        phoneNumber,
-        address: { street, city, country, state, zipcode },
-        productIds: cartItems.map((item) => item._id),
-        totalPrice,
-        totalQuantity,
-        token,
-      };
-      try {
-        setLoading(true);
-        const res = await api.post("/api/order/create-order", orderDetails);
-        const resData = res.data;
-        setFullName("");
-        setPhoneNumber("");
-        setEmail("");
-        setStreet("");
-        setCity("");
-        setCountry("");
-        setZipcode("");
-        setState("");
-        setLoading(false);
-        alert("Order placed successfully!");
-        console.log(resData)
-      } catch (error) {
-        setLoading(false);
-        console.error(error.message);
-      }
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const orderDetails = {
+      fullName: user.name,
+      email: user.email,
+      phoneNumber,
+      address: { street, city, country, state, zipcode },
+      totalPrice,
+      totalQuantity,
+      productIds: cartItems.map((item) => item._id),
     };
+    try {
+      const res = await api.post("/api/order/create-order", orderDetails);
+
+      const result = await res.data;
+
+      if (result.sessionId) {
+        const stripe = await loadStripe(stripePublishableKey || "pk_test_51MH9obJmOEovfobxmpSVDwmsJwa0cA2KXi1IICFSFXZLR48kfqRYvTZjKVi0ic0yVnWMEVUT4Ijh8GNmegL5X5RA00HWsQSdG3");
+        const { error } = await stripe.redirectToCheckout({
+          sessionId: result.sessionId, // Redirect the user to Stripe Checkout using the session ID
+        });
+
+        localStorage.removeItem("cart")
+
+        if (error) {
+          console.error("Error during checkout:", error);
+        }
+      }
+    } catch (error) {
+      console.error(error.message);
+    }
+  };
+
   return (
     <div className="container p-4 flex lg:items-center flex-col mx-auto bg-gradient-to-r from-purple-300 to-blue-300 inset mt-6">
       <div className="w-full items-start">
@@ -84,7 +72,7 @@ const CheckoutForm = () => {
           <p>Please fill out all details</p>
         </div>
         <div className="flex flex-col">
-          <form action="" className="space-y-4">
+          <form action="" onSubmit={handleSubmit} className="space-y-4">
             <div className="flex flex-col w-full space-y-0.5">
               <label htmlFor="" className="text-sm font-semibold">
                 FULLNAME
@@ -198,16 +186,9 @@ const CheckoutForm = () => {
               </p>
             </div>
             <div className="flex items-center justify-center mt-6 p-2">
-              <StripeCheckout
-                amount={totalPrice}
-                token={onToken}
-                currency="GBP"
-                stripeKey="pk_test_51MH9obJmOEovfobxmpSVDwmsJwa0cA2KXi1IICFSFXZLR48kfqRYvTZjKVi0ic0yVnWMEVUT4Ijh8GNmegL5X5RA00HWsQSdG3"
-              >
-                <button className="bg-purple-500 cursor-pointer px-6 py-2 text-white text-xl rounded-xl hover:bg-purple-800">
+              <button className="bg-purple-500 cursor-pointer px-6 py-2 text-white text-xl rounded-xl hover:bg-purple-800">
                 {loading ? <Loader /> : "Place Order"}
-                </button>
-              </StripeCheckout>
+              </button>
             </div>
           </form>
         </div>
