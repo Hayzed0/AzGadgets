@@ -2,6 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   products: [],
+  product: [],
   loading: false,
   page: 1,
   error: null,
@@ -20,6 +21,9 @@ const productSlice = createSlice({
       } else {
         console.error("Invalid payload: Expected array, got", action.payload);
       }
+    },
+    setProduct: (state, action) => {
+      state.product = action.payload
     },
     setError: (state, action) => {
       state.error = action.payload
@@ -46,6 +50,7 @@ const productSlice = createSlice({
 export const {
   setLoading,
   setProducts,
+  setProduct,
   setError,
   setPageIncrement,
   addProductSuccess,

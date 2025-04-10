@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router";
+import { Link, useParams } from "react-router";
 import {
   setError,
   setLoading,
@@ -75,7 +75,8 @@ const ProductList = () => {
       <div className="flex flex-col gap-4">
         {products &&
           products.map((product, index) => (
-            <div
+            <Link
+            to={`/products/${product._id}`}
               key={index}
               className="flex gap-4 flex-row bg-gray-200 p-4 rounded-lg"
             >
@@ -110,7 +111,7 @@ const ProductList = () => {
                   </div>
                 </div>
               </div>
-            </div>
+            </Link>
           ))}
       </div>
       {/* Load More Button */}

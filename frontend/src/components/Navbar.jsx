@@ -43,7 +43,7 @@ const Navbar = () => {
     try {
       setLoading(true);
       setOpenResult(false);
-      const res = await api.get("/api/products/get-all-products");
+      const res = await api.get("/api/products/");
       const resData = res.data;
       const filteredSearch = resData.filter((item) =>
         item.title.toLowerCase().includes(value.toLowerCase())
@@ -165,7 +165,7 @@ const Navbar = () => {
           value={query}
           onChange={handleChange}
           onFocus={handleFocus} // Show results when input is focused
-          onBlur={handleBlur} // Hide results when input loses focus
+          onBlur={() => setTimeout(() => setIsOpen(false), 100)}
           className="flex w-full rounded-full py-2 px-2 outline-none focus:ring-2 focus:ring-purple-500"
           placeholder="Search our Products"
         />
@@ -173,7 +173,7 @@ const Navbar = () => {
           <IoIosSearch size={16} className="text-white" />
         </button>
         <div>
-          {openResult && <SearchResult results={results} query={query} />}
+          {openResult && <SearchResult results={results} query={query} setOpenResult={setOpenResult}/>}
         </div>
       </div>
     </nav>

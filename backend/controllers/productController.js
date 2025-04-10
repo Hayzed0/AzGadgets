@@ -76,3 +76,19 @@ export const getProductByCategory = async (req, res) => {
     });
   }
 };
+
+
+export const getSingleProduct = async (req, res) => {
+  const {id} = req.params;
+  try {
+    const product = await productModel.findById(id)
+    if(!product) {
+      return res.status(400).send({message: "no product found"})
+    }
+    res.status(200).json(product)
+  } catch (error) {
+    res.status(500).send({
+      message: "something went wrong while trying to get product" + error.message,
+    });
+  }
+}
