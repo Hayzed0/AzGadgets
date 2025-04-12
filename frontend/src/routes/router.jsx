@@ -12,6 +12,12 @@ import SuccessPage from "../pages/SuccessPage";
 import CancelPage from "../pages/CancelPage";
 import AccountPage from "../pages/AccountPage";
 import SingleProduct from "../pages/SingleProduct";
+import DashBoard from "../pages/dashboard/DashBoard";
+import ViewAllOrders from "../pages/dashboard/orders/ViewAllOrders";
+import ViewAllProducts from "../pages/dashboard/products/ViewAllProducts";
+import ViewAllUsers from "../pages/dashboard/users/ViewAllUsers";
+import AdminRoute from "./AdminRoute";
+import DashBoardHome from "../pages/dashboard/DashBoardHome";
 
 const router = createBrowserRouter([
   {
@@ -72,6 +78,42 @@ const router = createBrowserRouter([
           <PrivateRoute>
             <AccountPage />
           </PrivateRoute>
+        ),
+      },
+    ],
+  },
+  {
+    path: "/dashboard",
+    element: (
+      <AdminRoute>
+        <DashBoard />
+      </AdminRoute>
+    ),
+    children: [
+      {
+        path: "",
+        element: <DashBoardHome />,
+      },
+      {
+        path: "all-orders",
+        element: <ViewAllOrders />,
+      },
+      {
+        path: "view-all-products",
+        element: (
+          <AdminRoute>
+            {" "}
+            <ViewAllProducts />{" "}
+          </AdminRoute>
+        ),
+      },
+      {
+        path: "view-all-users",
+        element: (
+          <AdminRoute>
+            {" "}
+            <ViewAllUsers />{" "}
+          </AdminRoute>
         ),
       },
     ],

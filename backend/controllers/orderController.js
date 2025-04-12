@@ -115,3 +115,25 @@ export const cancelAnOrder = async (req, res) => {
     res.status(500).json({ error: error.message });
   }
 };
+
+export const getAllOrder = async (req, res) => {
+  try {
+    const orders = await orderModel.find()
+    if(!orders || orders.length === 0){
+      return res.status(400).send({message: "no order found"})
+    }
+    const orderWithProd = await Promise.all(
+      orders.map(async (order) => {
+        const products = await productModel.find({ _id: {$in: order.productIds}})
+         
+        return {
+          ...order.toObject(),
+          products
+        }
+      } )
+    )
+    res.status(200).json(orderWithProd)
+  } catch (error) {
+    res.status(500).send({message: error.message})
+  }
+}

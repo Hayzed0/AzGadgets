@@ -39,9 +39,11 @@ const productSchema = new mongoose.Schema({
   },
   popular: {
     type: Boolean,
+    default: false
   },
   onSale: {
     type: Boolean,
+    default: false
   },
 }, {
     timestamps: true
