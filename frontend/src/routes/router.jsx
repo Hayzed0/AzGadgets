@@ -7,7 +7,7 @@ import RegisterPage from "../pages/RegisterPage";
 import ProductsPage from "../pages/ProductsPage";
 import CartPage from "../pages/CartPage";
 import CheckoutPage from "../pages/CheckoutPage";
-import PrivateRoute from "./privateRoute";
+import PrivateRoute from "./PrivateRoute";
 import SuccessPage from "../pages/SuccessPage";
 import CancelPage from "../pages/CancelPage";
 import AccountPage from "../pages/AccountPage";
