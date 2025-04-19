@@ -51,48 +51,57 @@ const ProductsOnSale = () => {
   }
 
   return (
-    <section className="relative flex items-center gap-12  ">
-      {/* Left Scroll Button */}
-      <button
-        className="absolute -left-8 z-10 p-2 rounded-full shadow-md hidden md:flex cursor-pointer transition-transform transform hover:scale-125"
-        onClick={() => scroll("left")}
-      >
-        <FaChevronCircleLeft size={25} />
-      </button>
-      {/* scrollable categories */}
-      <div
-        ref={scrollRef}
-        className="flex items-center gap-2 p-4 overflow-x-auto no-scrollbar"
-      >
-        {saleProducts.map((product, index) => (
-          <div
-            key={index}
-            onClick={() => handleSaleClick(product._id)}
-            className="flex flex-col gap-2 p-4 border border-gray-500 rounded-lg h-130 cursor-pointer scale-80 transition-transform transform hover:scale-100 "
+    <>
+      {saleProducts.length > 0 && (
+        <section className="relative flex items-center gap-12  ">
+          {/* Left Scroll Button */}
+          <button
+            className="absolute -left-8 z-10 p-2 rounded-full shadow-md hidden md:flex cursor-pointer transition-transform transform hover:scale-125"
+            onClick={() => scroll("left")}
           >
-            <div className="flex w-60 items-center justify-center ">
-              <img src={product.image} alt={product.model} className="h-40 " />
-            </div>
-            <div className="space-y-4">
-              <p className="text-center">{product.title}</p>
-              <h1 className="font-semibold ">{product.model}</h1>
-              <h1 className="font-semibold text-2xl">£{product.price}</h1>
-              <h1 className="text-red-500 font-semibold text-xl">
-                {" "}
-                save £{((product.discount / 100) * product.price).toFixed(2)}
-              </h1>
-            </div>
+            <FaChevronCircleLeft size={25} />
+          </button>
+          {/* scrollable categories */}
+          <div
+            ref={scrollRef}
+            className="flex items-center gap-2 p-4 overflow-x-auto no-scrollbar"
+          >
+            {saleProducts.map((product, index) => (
+              <div
+                key={index}
+                onClick={() => handleSaleClick(product._id)}
+                className="flex flex-col gap-2 p-4 border border-gray-500 w-80 rounded-lg h-130 cursor-pointer scale-80 transition-transform transform hover:scale-100 "
+              >
+                <div className="flex w-full items-center justify-center ">
+                  <img
+                    src={product.image}
+                    alt={product.model}
+                    className="h-40 "
+                  />
+                </div>
+                <div className="space-y-4">
+                  <p className="text-center">{product.title}</p>
+                  <h1 className="font-semibold ">{product.model}</h1>
+                  <h1 className="font-semibold text-2xl">£{product.price}</h1>
+                  <h1 className="text-red-500 font-semibold text-xl">
+                    {" "}
+                    save £
+                    {((product.discount / 100) * product.price).toFixed(2)}
+                  </h1>
+                </div>
+              </div>
+            ))}
           </div>
-        ))}
-      </div>
-      {/* Right Scroll Button */}
-      <button
-        className="absolute -right-8 z-10 p-2 rounded-full shadow-md hidden md:flex cursor-pointer transition-transform transform hover:scale-125"
-        onClick={() => scroll("right")}
-      >
-        <FaChevronCircleRight size={25} />
-      </button>
-    </section>
+          {/* Right Scroll Button */}
+          <button
+            className="absolute -right-8 z-10 p-2 rounded-full shadow-md hidden md:flex cursor-pointer transition-transform transform hover:scale-125"
+            onClick={() => scroll("right")}
+          >
+            <FaChevronCircleRight size={25} />
+          </button>
+        </section>
+      )}
+    </>
   );
 };
 

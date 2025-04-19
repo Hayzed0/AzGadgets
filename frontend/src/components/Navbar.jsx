@@ -94,7 +94,7 @@ const Navbar = () => {
             <img
               src={myLogo}
               alt="Nav logo"
-              className="w-14 h-14 lg:w-25 lg:h-25 rounded-full"
+              className="w-10 h-10 lg:w-20 lg:h-20 rounded-full"
             />
           </Link>
           <div className="hidden relative lg:flex rounded-full w-full  lg:w-1/4 bg-gray-200 ">
@@ -115,17 +115,17 @@ const Navbar = () => {
             </div>
           </div>
         </div>
-        <div className="flex items-center space-x-4">
+        <div className="flex items-center space-x-2 lg:space-x-4">
           <div className="flex flex-col items-center">
-            <IoLocationOutline size={22} />
-            <p className="text-sm">stores</p>
+            <IoLocationOutline />
+            <p className="text-xs lg:text-sm">stores</p>
           </div>
           <button
             onClick={() => setIsOpen(!isOpen)}
             className="relative flex flex-col items-center cursor-pointer"
           >
-            <FaUserCircle size={22} />
-            <p className="text-sm">Account</p>
+            <FaUserCircle/>
+            <p className="text-xs lg:text-sm">Account</p>
           </button>
           {isOpen && user && (
             <div className="absolute flex flex-col h-40 w-64 top-26 right-0 z-40 space-y-4 bg-white rounded py-6 px-4">
@@ -150,8 +150,8 @@ const Navbar = () => {
             to="/cart-items"
             className="relative flex flex-col items-center"
           >
-            <TiShoppingCart size={22} />
-            <p className="text-sm">Basket</p>
+            <TiShoppingCart />
+            <p className="text-xs lg:text-sm">Basket</p>
             <span className="absolute -top-4 left-6 z-10 bg-red-500 text-white rounded-full py-1 px-2 text-xs">
               {totalQuantity}
             </span>

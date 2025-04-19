@@ -6,6 +6,7 @@ import {
 } from "../../../redux/features/productSlice";
 import { useDispatch, useSelector } from "react-redux";
 import api from "../../../config/api";
+import { MdCancel } from "react-icons/md";
 import { useParams } from "react-router";
 
 const EditProduct = ({ setOpenUpdate, productId }) => {
@@ -61,6 +62,9 @@ const EditProduct = ({ setOpenUpdate, productId }) => {
   };
   return (
     <div className="absolute top-0 right-0 z-40 left-0 flex flex-col items-center w-full p-4 lg:w-1/2 justify-center mx-auto mt-4  bg-gradient-to-r rounded-xl from-purple-300 to-blue-300">
+      <div className="w-full flex mb-6 justify-end">
+        <button onClick={() => setOpenUpdate(false)} className="text-red-600 cursor-pointer"><MdCancel size={22}/></button>
+      </div>
       <form
         onSubmit={updateProduct}
         action=""

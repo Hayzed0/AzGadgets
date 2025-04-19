@@ -117,13 +117,13 @@ const ViewAllProducts = () => {
                   <td className="px-4 py-2 space-y-3 border font-semibold">
                     <button
                       onClick={() => getProductToUpdate(product._id)}
-                      className="px-4 py-2 bg-purple-500 text-white rounded-lg"
+                      className="px-4 py-2 bg-purple-500 text-white rounded-lg cursor-pointer"
                     >
                       Update
                     </button>
                     <button
                       onClick={() => handleDelete(product._id)}
-                      className="px-5 py-2 bg-red-500 text-white rounded-lg"
+                      className="px-5 py-2 bg-red-500 text-white rounded-lg cursor-pointer"
                     >
                       Delete
                     </button>
@@ -142,6 +142,7 @@ const ViewAllProducts = () => {
             <EditProduct
               productId={selectedProductId}
               setOpenUpdate={setOpenUpdate}
+              openUpdate={openUpdate}
             />
           )}
         </div>

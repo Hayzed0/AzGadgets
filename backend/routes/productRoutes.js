@@ -6,11 +6,11 @@ import { protect, adminProtect } from "../middleware/authMiddleware.js"
 const productRouter = express.Router()
 
 productRouter.post("/create-product",protect, adminProtect, createProduct)
-productRouter.get("/",protect, getAllProducts)
+productRouter.get("/", getAllProducts)
 productRouter.put("/update-product/:productId",protect, adminProtect, updateProduct)
 productRouter.delete("/delete-product/:productId",protect, adminProtect, deleteProduct)
-productRouter.get("/category/:category",protect, getProductByCategory)
-productRouter.get("/:id",protect, getSingleProduct)
+productRouter.get("/category/:category", getProductByCategory)
+productRouter.get("/:id", getSingleProduct)
 
 
 export default productRouter

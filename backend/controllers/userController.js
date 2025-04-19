@@ -80,3 +80,16 @@ export const getUser = async (req, res) => {
     res.status(500).send({ message: "server error", error: error.message });
   }
 };
+
+export const getAllUsers = async (req, res) => {
+  try {
+    const users = await userModel.find().select("-password")
+    if(users.length === 0 ) {
+      return res.status(404).send({message: "no user found"})
+    }
+    res.status(200).json(users)
+  } catch (error) {
+    console.error(error);
+    res.status(500).send({ message: "server error", error: error.message });
+  }
+}
