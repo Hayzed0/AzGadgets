@@ -10,7 +10,7 @@ const app = express();
 
 app.use(
   cors({
-    origin: [process.env.CLIENT_URL, "https://azchatapp.vercel.app"],
+    origin: [process.env.CLIENT_URL, "https://az-gadgets.vercel.app"],
     credentials: true,
   })
 );
