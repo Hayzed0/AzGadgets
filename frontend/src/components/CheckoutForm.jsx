@@ -14,6 +14,7 @@ const CheckoutForm = () => {
   const [zipcode, setZipcode] = useState("");
   const [loading, setLoading] = useState(false);
   const stripePublishableKey = import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY;
+  const token = localStorage.getItem("token")
   const user = JSON.parse(localStorage.getItem("user"));
   const { totalQuantity, totalPrice, cartItems } = useSelector(
     (state) => state.carts
@@ -31,7 +32,11 @@ const CheckoutForm = () => {
       productIds: cartItems.map((item) => item._id),
     };
     try {
-      const res = await api.post("/api/order/create-order", orderDetails);
+      const res = await api.post("/api/order/create-order", orderDetails, {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      });
 
       const result = await res.data;
 
