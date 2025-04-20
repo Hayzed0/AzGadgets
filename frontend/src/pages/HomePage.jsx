@@ -3,7 +3,7 @@ import Banner from "../components/Banner";
 import CategoriesButton from "../components/CategoriesButton";
 import PopularProducts from "../components/PopularProducts";
 import ProductsOnSale from "../components/ProductsOnSale";
-import { Helmet } from "react-helmet-async";
+import { Helmet } from "react-helmet";
 
 const HomePage = () => {
   return (
@@ -14,7 +14,10 @@ const HomePage = () => {
           name="description"
           content="Discover the latest and smartest gadgets designed to make your life easier, more fun, and more connected. Explore trending electronics, innovative tools, and smart devices — all in one place."
         />
-        <meta name="keywords" content="latest gadgets, smart devices, trending tech, home automation, electronics, wearables" />
+        <meta
+          name="keywords"
+          content="latest gadgets, smart devices, trending tech, home automation, electronics, wearables"
+        />
         <meta property="og:title" content="Home | Az Gadgets" />
         <meta
           property="og:description"
