@@ -54,48 +54,57 @@ const PopularProducts = () => {
   return (
     <>
       {popularProducts && (
-        <section className="relative flex items-center gap-12  ">
-          {/* Left Scroll Button */}
-          <button
-            className="absolute -left-8 z-10 p-2 rounded-full shadow-md hidden md:flex cursor-pointer transition-transform transform hover:scale-125"
-            onClick={() => scroll("left")}
-          >
-            <FaChevronCircleLeft size={25} />
-          </button>
-          {/* scrollable categories */}
-          <div
-            ref={scrollRef}
-            className="flex items-center gap-2 p-4 overflow-x-auto no-scrollbar"
-          >
-            {popularProducts.map((product, index) => (
-              <div
-                key={product._id}
-                onClick={() => handlePopularClick(product._id)}
-                className="flex flex-col gap-2 p-4 border border-gray-500 w-full rounded-lg h-120 cursor-pointer scale-80 transition-transform transform hover:scale-100 "
-              >
-                <div className="w-80 flex items-center justify-center ">
-                  <img
-                    src={product.image}
-                    alt={product.model}
-                    className="h-40 "
-                  />
-                </div>
-                <div className="space-y-6">
-                  <p className="text-center">{product.title}</p>
-                  <h1 className="font-semibold ">{product.model}</h1>
-                  <h1 className="font-semibold text-2xl">£{product.price}</h1>
-                </div>
-              </div>
-            ))}
+        <div className="flex flex-col w-full">
+          <div className="flex w-full items-center justify-center">
+            <h1 className="text-xl lg:text-3xl font-semibold">Popular Products</h1>
           </div>
-          {/* Right Scroll Button */}
-          <button
-            className="absolute -right-8 z-10 p-2 rounded-full shadow-md hidden md:flex cursor-pointer transition-transform transform hover:scale-125"
-            onClick={() => scroll("right")}
-          >
-            <FaChevronCircleRight size={25} />
-          </button>
-        </section>
+          <section className="relative flex items-center gap-12 ">
+            {/* Left Scroll Button */}
+            <button
+              className="absolute -left-8 z-10 p-2 rounded-full shadow-md hidden md:flex cursor-pointer transition-transform transform hover:scale-125"
+              onClick={() => scroll("left")}
+            >
+              <FaChevronCircleLeft size={25} />
+            </button>
+            {/* scrollable categories */}
+            <div
+              ref={scrollRef}
+              className="flex items-center gap-2 overflow-x-auto no-scrollbar"
+            >
+              {popularProducts.map((product, index) => (
+                <div
+                  key={product._id}
+                  onClick={() => handlePopularClick(product._id)}
+                  className="flex flex-col gap-2 p-4 border border-gray-500 rounded-lg h-120 cursor-pointer scale-80 transition-transform transform hover:scale-100 "
+                >
+                  <div className="flex flex-col w-60 space-y-4">
+                    <div className="flex w-60 items-center justify-center mx-auto">
+                      <img
+                        src={product.image}
+                        alt={product.model}
+                        className="h-40"
+                      />
+                    </div>
+                    <div className="space-y-6">
+                      <p className="text-center">{product.title}</p>
+                      <h1 className="font-semibold ">{product.model}</h1>
+                      <h1 className="font-semibold text-2xl">
+                        £{product.price}
+                      </h1>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+            {/* Right Scroll Button */}
+            <button
+              className="absolute -right-8 z-10 p-2 rounded-full shadow-md hidden md:flex cursor-pointer transition-transform transform hover:scale-125"
+              onClick={() => scroll("right")}
+            >
+              <FaChevronCircleRight size={25} />
+            </button>
+          </section>
+        </div>
       )}
     </>
   );
