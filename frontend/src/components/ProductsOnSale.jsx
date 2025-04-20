@@ -70,9 +70,9 @@ const ProductsOnSale = () => {
               <div
                 key={index}
                 onClick={() => handleSaleClick(product._id)}
-                className="flex flex-col gap-2 p-4 border border-gray-500 w-80 rounded-lg h-130 cursor-pointer scale-80 transition-transform transform hover:scale-100 "
+                className="flex flex-col gap-2 p-4 border border-gray-500 w-full rounded-lg h-130 cursor-pointer scale-80 transition-transform transform hover:scale-100 "
               >
-                <div className="flex w-full items-center justify-center ">
+                <div className="flex w-80 items-center justify-center ">
                   <img
                     src={product.image}
                     alt={product.model}

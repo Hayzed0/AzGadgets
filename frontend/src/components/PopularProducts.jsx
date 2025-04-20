@@ -71,9 +71,9 @@ const PopularProducts = () => {
               <div
                 key={product._id}
                 onClick={() => handlePopularClick(product._id)}
-                className="flex flex-col gap-2 p-4 border border-gray-500 w-80 rounded-lg h-120 cursor-pointer scale-80 transition-transform transform hover:scale-100 "
+                className="flex flex-col gap-2 p-4 border border-gray-500 w-full rounded-lg h-120 cursor-pointer scale-80 transition-transform transform hover:scale-100 "
               >
-                <div className="w-full flex items-center justify-center ">
+                <div className="w-80 flex items-center justify-center ">
                   <img
                     src={product.image}
                     alt={product.model}
