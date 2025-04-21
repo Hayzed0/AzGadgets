@@ -33,14 +33,14 @@ const SingleProduct = () => {
     }
   };
 
-   const handleCartItem = (product) => {
-      dispatch(addToCart(product));
-      Swal.fire({
-        title: "Great!",
-        text: `you have Successfully add ${product.title} to your cart`,
-        icon: "success"
-      });
-    };
+  const handleCartItem = (product) => {
+    dispatch(addToCart(product));
+    Swal.fire({
+      title: "Great!",
+      text: `you have Successfully add ${product.title} to your cart`,
+      icon: "success",
+    });
+  };
 
   if (loading)
     return (
@@ -55,10 +55,19 @@ const SingleProduct = () => {
     <div className="flex flex-col gap-6 lg:flex-row p-2 bg-gray-200 rounded mt-2 shadow-2xl">
       <div className="flex flex-col w-full lg:w-1/2 p-2">
         <div className="flex justify-start">
-          <h1 className="text-sm md:text-lg lg:text-xl font-semibold font-serif">{product.title}</h1>
+          <h1 className="text-sm md:text-lg lg:text-xl font-semibold font-serif">
+            {product.title}
+          </h1>
         </div>
         <div className="w-auto h-auto p-3 lg:w-3/4">
-          <img src={product.image} alt={product.title} />
+          <picture>
+            <img
+              src={product.image}
+              alt={product.title || "Product image"}
+              className="object-cover w-full shadow mt-2"
+              loading="lazy"
+            />
+          </picture>
         </div>
       </div>
       <div className="flex flex-col space-y-6 lg:w-1/2 p-2">
@@ -67,7 +76,7 @@ const SingleProduct = () => {
           {product.brand} - {product.model}
         </h1>
         <h1 className="text-sm lg:text-2xl font-semibold">{product.color}</h1>
-        <p className="">{product.description}</p>
+        <p className="text-sm lg:text-lg">{product.description}</p>
         <div className="flex items-center lg:w-1/2 text-center justify-center py-2 px-4 rounded-full bg-purple-500 mt-4">
           <button
             onClick={() => handleCartItem(product)}

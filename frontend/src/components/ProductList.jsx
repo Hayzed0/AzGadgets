@@ -10,7 +10,7 @@ import {
 import api from "../config/api";
 import Loader from "./Loader";
 import { addToCart } from "../redux/features/cartSlice";
-import Swal from "sweetalert2"
+import Swal from "sweetalert2";
 
 const ProductList = () => {
   const [expanded, setExpanded] = useState(null);
@@ -53,7 +53,7 @@ const ProductList = () => {
     Swal.fire({
       title: "Great!",
       text: `you have Successfully add ${product.title} to your cart`,
-      icon: "success"
+      icon: "success",
     });
   };
 
@@ -75,16 +75,24 @@ const ProductList = () => {
       <div className="flex flex-col gap-4">
         {products &&
           products.map((product, index) => (
-            <Link
-            to={`/products/${product._id}`}
+            <div
               key={index}
               className="flex gap-4 flex-row bg-gray-200 p-4 rounded-lg"
             >
               <div className="flex items-start w-full lg:items-center lg:justify-center">
-                <img src={product.image} alt="" className="object-cover w-72" />
+                <picture>
+                  <img
+                    src={product.image}
+                    alt={product.name || "Product image"}
+                    className="object-cover w-72 shadow"
+                    loading="lazy"
+                  />
+                </picture>
               </div>
               <div className="w-full flex flex-col gap-4">
-                <h1 className="text-sm md:text-lg font-bold">{product.title}</h1>
+                <h1 className="text-sm md:text-lg font-bold">
+                  {product.title}
+                </h1>
                 <h1 className="text-sm md:text-lg">
                   color: <span className="font-semibold">{product.color}</span>
                 </h1>
@@ -100,18 +108,28 @@ const ProductList = () => {
                   </button>
                 </p>
                 <div className="flex flex-col w-full mt-auto">
-                  <h1 className="font-bold text-lg lg:text-xl">£{product.price}</h1>
-                  <div className="flex items-center lg:w-1/2 text-center justify-center py-2 px-4 rounded-full bg-purple-500 mt-4">
+                  <h1 className="font-bold text-lg lg:text-xl">
+                    £{product.price}
+                  </h1>
+                  <div className="flex items-center lg:w-1/2 text-center justify-center py-2 px-4 rounded-full bg-purple-500 mt-4 cursor-pointer">
                     <button
                       onClick={() => handleCartItem(product)}
-                      className="flex items-center font-semibold text-white cursor-pointer"
+                      className="flex  items-center font-semibold text-white cursor-pointer"
                     >
                       Add to Cart
                     </button>
                   </div>
+                  <div className="flex items-center lg:w-1/2 text-center justify-center py-2 px-4 rounded-full border-2 border-purple-500 mt-4 cursor-pointer">
+                    <Link
+                      to={`/products/${product._id}`}
+                      className="flex items-center font-semibold text-purple-500  cursor-pointer"
+                    >
+                      Veiw Product
+                    </Link>
+                  </div>
                 </div>
               </div>
-            </Link>
+            </div>
           ))}
       </div>
       {/* Load More Button */}

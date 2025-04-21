@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import registerImg from "../assets/funny.webp"
+import registerImg from "../assets/funny.jpg"
 import  { Link, useNavigate } from "react-router"
 import api from "../config/api"
 import Swal from "sweetalert2"

@@ -1,9 +1,8 @@
 import React from "react";
-import banner from "../assets/banner.jpg";
-import clearance from "../assets/clearance-deal.webp";
-import samsung from "../assets/samsung-banner.webp";
-import ipadAir from "../assets/banner-ipad.webp";
-import nintendo from "../assets/banner-nitendo.webp";
+import clearance from "../assets/clearance-deal.avif";
+import samsung from "../assets/samsung-banner.avif";
+import ipadAir from "../assets/banner-ipad.avif";
+import nintendo from "../assets/banner-nitendo.avif";
 
 const Banner = () => {
   return (

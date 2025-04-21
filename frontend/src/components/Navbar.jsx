@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useState } from "react";
-import myLogo from "../assets/1.jpg";
+import myLogo from "../assets/1.webp";
 import { IoLocationOutline } from "react-icons/io5";
 import { FaUserCircle } from "react-icons/fa";
 import { TiShoppingCart } from "react-icons/ti";

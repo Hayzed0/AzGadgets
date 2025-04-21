@@ -56,7 +56,9 @@ const PopularProducts = () => {
       {popularProducts && (
         <div className="flex flex-col w-full">
           <div className="flex w-full items-center justify-center">
-            <h1 className="text-xl lg:text-3xl font-semibold">Popular Products</h1>
+            <h1 className="text-xl lg:text-3xl font-semibold">
+              Popular Products
+            </h1>
           </div>
           <section className="relative flex items-center gap-12 ">
             {/* Left Scroll Button */}
@@ -79,11 +81,14 @@ const PopularProducts = () => {
                 >
                   <div className="flex flex-col w-60 space-y-4">
                     <div className="flex w-60 items-center justify-center mx-auto">
-                      <img
-                        src={product.image}
-                        alt={product.model}
-                        className="h-40"
-                      />
+                      <picture>
+                        <img
+                          src={product.image}
+                          alt={product.model || "Product image"}
+                          className="object-cover w-72 shadow"
+                          loading="lazy"
+                        />
+                      </picture>
                     </div>
                     <div className="space-y-6">
                       <p className="text-center">{product.title}</p>

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router";
-import loginImg from "../assets/shopping-time.jpg"
+import loginImg from "../assets/shopping-time.avif"
 import Swal from "sweetalert2";
 import api from "../config/api";
 

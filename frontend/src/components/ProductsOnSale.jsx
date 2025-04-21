@@ -42,20 +42,14 @@ const ProductsOnSale = () => {
     navigate(`/products/${id}`); // Navigate to product page
   };
 
-  if (loading) {
-    return (
-      <div>
-        <Loader />{" "}
-      </div>
-    );
-  }
-
   return (
     <>
       {saleProducts.length > 0 && (
         <div className="flex flex-col w-full">
           <div className="flex w-full items-center justify-center">
-            <h1 className="text-xl lg:text-3xl font-semibold">Products on Sale</h1>
+            <h1 className="text-xl lg:text-3xl font-semibold">
+              Products on Sale
+            </h1>
           </div>
           <section className="relative flex items-center gap-12  ">
             {/* Left Scroll Button */}
@@ -78,11 +72,14 @@ const ProductsOnSale = () => {
                 >
                   <div className="flex flex-col w-60">
                     <div className="flex w-60 items-center justify-center mx-auto">
-                      <img
-                        src={product.image}
-                        alt={product.model}
-                        className="h-40"
-                      />
+                      <picture>
+                        <img
+                          src={product.image}
+                          alt={product.model || "Product image"}
+                          className="object-cover w-72"
+                          loading="lazy"
+                        />
+                      </picture>
                     </div>
                     <div className="space-y-4 mt-4">
                       <p className="text-center">{product.title}</p>

@@ -1,15 +1,13 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import applePay from "../assets/Apple_pay.svg";
-import Gpay from "../assets/Google_Pay.png";
-import stripe from "../assets/stripe-product-image.webp";
-import mastercard from "../assets/mastercard-logo.png";
-import americaExpress from "../assets/American-Express-Color.png";
+import applePay from "../assets/images (1).avif";
+import Gpay from "../assets/Google_Pay.webp";
+import stripe from "../assets/stripe-product-image.avif";
+import mastercard from "../assets/mastercard-logo.webp";
+import americaExpress from "../assets/American-Express-Color.webp";
 import {
   updateCart,
-  addToCart,
   removeFromCart,
-  clearCart,
 } from "../redux/features/cartSlice";
 import { Navigate, useNavigate } from "react-router";
 import { MdDeleteForever } from "react-icons/md"

@@ -1,11 +1,11 @@
 import React, { useRef } from "react";
 import { FaChevronCircleLeft, FaChevronCircleRight } from "react-icons/fa";
-import appliance from "../assets/appliance (1).jpg";
-import laptop from "../assets/laptops.jpg";
-import audio from "../assets/audio.jpg";
-import gaming from "../assets/gaming.jpg";
-import tv from "../assets/tv.jpg";
-import mobile from "../assets/mobile.jpg";
+import appliance from "../assets/appliance (1).avif";
+import laptop from "../assets/laptops.avif";
+import audio from "../assets/audio.avif";
+import gaming from "../assets/gaming (1).avif";
+import tv from "../assets/tv.avif";
+import mobile from "../assets/mobile.webp";
 import { useNavigate } from "react-router";
 
 const categories = [
