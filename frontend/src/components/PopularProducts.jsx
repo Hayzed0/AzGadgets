@@ -43,16 +43,14 @@ const PopularProducts = () => {
     navigate(`/products/${id}`); // Navigate to product page
   };
 
-  if (loading) {
-    return (
-      <div>
-        <Loader />{" "}
-      </div>
-    );
-  }
-
   return (
-    <>
+    <div className="flex flex-col space-y-6 mb-4">
+      {loading && (
+        <div>
+          
+          <Loader />
+        </div>
+      )}
       {popularProducts && (
         <div className="flex flex-col w-full">
           <div className="flex w-full items-center justify-center">
@@ -111,7 +109,7 @@ const PopularProducts = () => {
           </section>
         </div>
       )}
-    </>
+    </div>
   );
 };
 
