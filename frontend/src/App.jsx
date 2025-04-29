@@ -6,7 +6,7 @@ import Footer from './components/Footer'
 const App = () => {
   return (
     <div>
-      <Navbar /> 
+      <Navbar />
       <main className='container min-h-screen flex flex-col mx-auto '>
         <Outlet />
       </main>
