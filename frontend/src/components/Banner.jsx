@@ -13,6 +13,7 @@ const Banner = () => {
             src={clearance}
             alt="Clearance sales banner"
             className="h-auto w-full rounded-lg"
+            loading="eager"
           />
         </div>
         <div className="flex w-full h-60 md:h-90 lg:h-auto">
@@ -20,6 +21,7 @@ const Banner = () => {
             src={samsung}
             alt="Samsung Deal Banner"
             className="h-auto w-full rounded-lg"
+            loading="eager"
           />
         </div>
         <div className="flex w-full h-60 md:h-90 lg:h-auto">
@@ -27,11 +29,12 @@ const Banner = () => {
             src={ipadAir}
             alt="IpadAir banner"
             className="h-auto w-full rounded-lg"
+            loading="eager"
           />
         </div>
       </div>
       <div className="mt-8">
-        <img src={nintendo} alt="" />
+        <img src={nintendo} alt="nintendo" loading="eager" />
       </div>
     </section>
   );

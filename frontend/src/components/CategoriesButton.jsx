@@ -66,7 +66,7 @@ const CategoriesButton = () => {
       {/* scrollable categories */}
       <div
         ref={scrollRef}
-        className="flex items-center gap-12 p-4 overflow-x-auto mt-4 no-scrollbar"
+        className="flex items-center gap-4 p-4 overflow-x-auto mt-4 no-scrollbar"
       >
         {categories.map((category, index) => (
           <button
@@ -75,7 +75,7 @@ const CategoriesButton = () => {
             className="flex flex-col gap-2  items-center cursor-pointer scale-80 transition-transform transform hover:scale-100 "
           >
             <div className="flex w-60 items-center justify-center ">
-              <img src={category.img} alt="categories" className="h-40 " />
+              <img src={category.img} alt="categories" className="h-40 w-full" />
             </div>
             <h1>{category.title}</h1>
           </button>
