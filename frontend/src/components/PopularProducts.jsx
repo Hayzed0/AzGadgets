@@ -45,11 +45,6 @@ const PopularProducts = () => {
 
   return (
     <div className="flex flex-col space-y-6 mb-4">
-      {loading && (
-        <div>
-          <Loader />
-        </div>
-      )}
       {popularProducts && (
         <div className="flex flex-col w-full">
           <div className="flex w-full items-center justify-center">
@@ -57,6 +52,11 @@ const PopularProducts = () => {
               Popular Products
             </h1>
           </div>
+          {loading && (
+            <div>
+              <Loader />
+            </div>
+          )}
           <section className="relative flex items-center gap-12 ">
             {/* Left Scroll Button */}
             <button
