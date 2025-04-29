@@ -107,7 +107,7 @@ const Navbar = () => {
               className="flex w-full rounded-full py-2 px-2 outline-none focus:ring-2 focus:ring-purple-500"
               placeholder="Search our Products"
             />
-            <button className="absolute right-0 bg-purple-500 rounded-full p-3 ">
+            <button className="absolute right-0 bg-purple-500 rounded-full p-3" aria-label="Search">
               <IoIosSearch size={16} className="text-white" />
             </button>
             <div>
@@ -169,7 +169,7 @@ const Navbar = () => {
           className="flex w-full rounded-full py-2 px-2 outline-none focus:ring-2 focus:ring-purple-500"
           placeholder="Search our Products"
         />
-        <button className="absolute right-0 bg-purple-500 rounded-full p-3 ">
+        <button className="absolute right-0 bg-purple-500 rounded-full p-3" aria-label="Search">
           <IoIosSearch size={16} className="text-white" />
         </button>
         <div>

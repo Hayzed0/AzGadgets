@@ -87,7 +87,7 @@ const ProductsOnSale = () => {
                       <h1 className="font-semibold text-2xl">
                         £{product.price}
                       </h1>
-                      <h1 className="text-red-500 font-semibold text-xl">
+                      <h1 className="text-red-700 font-semibold text-xl">
                         {" "}
                         save £
                         {((product.discount / 100) * product.price).toFixed(2)}
