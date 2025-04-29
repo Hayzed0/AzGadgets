@@ -33,9 +33,11 @@ const productSchema = new mongoose.Schema({
   },
   ratings: {
     type: Number,
+    default: 0
   },
   discount: {
     type: Number,
+    default: 0
   },
   popular: {
     type: Boolean,

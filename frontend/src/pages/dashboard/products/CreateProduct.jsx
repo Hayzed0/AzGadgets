@@ -19,6 +19,17 @@ const CreateProduct = ({ setOpenCreate }) => {
   const dispatch = useDispatch();
   const { loading, error } = useSelector((state) => state.products);
   const token = localStorage.getItem("token");
+
+  const handleImageChange = (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+
+    const reader = new FileReader();
+    reader.onloadend = () => {
+      setImage(reader.result);
+    };
+    reader.readAsDataURL(file);
+  };
   const CreateProduct = async (e) => {
     e.preventDefault();
     const data = {
@@ -48,7 +59,7 @@ const CreateProduct = ({ setOpenCreate }) => {
       setBrand("");
       dispatch(setLoading(false));
       setOpenCreate(false)
-      window.location.href = window.location.href;
+      window.location.reload();
     } catch (error) {
       dispatch(setLoading(false));
       dispatch(setError(true));
@@ -132,9 +143,9 @@ const CreateProduct = ({ setOpenCreate }) => {
         <div className="flex flex-col space-y-1.5 w-full">
           <label>Image</label>
           <input
-            type="text"
-            value={image}
-            onChange={(e) => setImage(e.target.value)}
+            type="file"
+            onChange={handleImageChange}
+             accept="image/png, image/jpeg, image/jpg, image/avif, image/webp"
             className="py-1 px-2 rounded-md outline-none focus:ring-1 focus:ring-purple-700 ring ring-purple-100"
           />
         </div>

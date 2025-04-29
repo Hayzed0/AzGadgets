@@ -12,6 +12,7 @@ A full-featured multi-category e-commerce application built with the **MERN Stac
 - Add to cart and manage cart
 - Checkout with Stripe payments
 - Order history and profile management
+- cloudinary to save product images
 
 ### Admin Features
 - Dashboard overview

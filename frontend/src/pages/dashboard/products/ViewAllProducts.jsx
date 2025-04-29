@@ -112,8 +112,8 @@ const ViewAllProducts = () => {
                   <td className="px-4 py-2 border">{product.model}</td>
                   <td className="px-4 py-2 border">{product.category}</td>
                   <td className="px-4 py-2 border">{product.color}</td>
-                  <td className="px-4 py-2 border">{product.description}</td>
-                  <td className="px-4 py-2 border">{product.image}</td>
+                  <td className="px-4 py-2 border">{product.description.slice(0,100)}</td>
+                  <td className="px-4 py-2 border">{product.image.slice(0,20)}</td>
                   <td className="px-4 py-2 space-y-3 border font-semibold">
                     <button
                       onClick={() => getProductToUpdate(product._id)}

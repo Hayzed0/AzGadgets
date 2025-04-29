@@ -1,3 +1,4 @@
+import cloudinary from "../config/cloudinary.js";
 import productModel from "../models/productModel.js";
 
 export const createProduct = async (req, res) => {
@@ -16,9 +17,21 @@ export const createProduct = async (req, res) => {
   } = req.body;
 
   try {
+    if (!title || !price || !description || !brand || !category) {
+      return res
+        .status(400)
+        .json({ success: false, message: "Missing required fields" });
+    }
+    let imageUrl = null;
+    if (image) {
+      const uploadResponse = await cloudinary.uploader.upload(image, {
+        folder: "products",
+      });
+      imageUrl = uploadResponse.secure_url;
+    }
     const product = await productModel.create({
       title,
-      image,
+      image: imageUrl,
       price,
       description,
       brand,
@@ -112,14 +125,14 @@ export const updateProduct = async (req, res) => {
 };
 
 export const deleteProduct = async (req, res) => {
-  const {productId} = req.params
+  const { productId } = req.params;
   try {
-    const product = await productModel.findByIdAndDelete(productId)
-    if(!product) {
-      return res.status(404).send({message: "No product found"})
+    const product = await productModel.findByIdAndDelete(productId);
+    if (!product) {
+      return res.status(404).send({ message: "No product found" });
     }
-    res.status(200).json({ message: "Product deleted successfully", product })
+    res.status(200).json({ message: "Product deleted successfully", product });
   } catch (error) {
     res.status(500).send({ message: error.message });
   }
-}
+};
