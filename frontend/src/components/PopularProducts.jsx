@@ -7,6 +7,8 @@ import Loader from "./Loader";
 const PopularProducts = () => {
   const [popularProducts, setPopularProducts] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+
   const token = localStorage.getItem("token");
   const scrollRef = useRef(null);
   const navigate = useNavigate();
@@ -16,15 +18,16 @@ const PopularProducts = () => {
   const fetchPopularProduct = async () => {
     try {
       setLoading(true);
-      const res = await api.get("/api/products?limits=10");
+      const res = await api.get("/api/products?limits=5");
       const resData = res.data;
       const filterProducts = resData.filter(
         (product) => product.popular === true
       );
-      setPopularProducts(filterProducts.slice(0, 20));
+      setPopularProducts(filterProducts.slice(0, 10));
       setLoading(false);
     } catch (error) {
       setLoading(false);
+      setError(true)
       console.error(error.message);
     }
   };
@@ -55,6 +58,11 @@ const PopularProducts = () => {
           {loading && (
             <div>
               <Loader />
+            </div>
+          )}
+          {error && (
+            <div>
+              <h1 className="text-3xl text-center text-red-500">Error occured whilst trying to load products... Try Again</h1>
             </div>
           )}
           <section className="relative flex items-center gap-12 ">

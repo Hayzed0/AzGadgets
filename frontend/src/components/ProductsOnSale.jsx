@@ -7,6 +7,7 @@ import Loader from "./Loader";
 const ProductsOnSale = () => {
   const [saleProducts, setSaleProducts] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
   const scrollRef = useRef(null);
   const navigate = useNavigate();
   useEffect(() => {
@@ -15,15 +16,16 @@ const ProductsOnSale = () => {
   const fetchSaleProduct = async () => {
     try {
       setLoading(true);
-      const res = await api.get("/api/products?limits=20");
+      const res = await api.get("/api/products?limits=5");
       const resData = res.data;
       const filterProducts = resData.filter(
         (product) => product.onSale === true
       );
-      setSaleProducts(filterProducts.slice(0, 20));
+      setSaleProducts(filterProducts.slice(0, 10));
       setLoading(false);
     } catch (error) {
       setLoading(false);
+      setError(true)
       console.error(error.message);
     }
   };

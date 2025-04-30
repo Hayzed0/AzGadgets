@@ -128,9 +128,10 @@ const Navbar = () => {
             <p className="text-xs lg:text-sm">Account</p>
           </button>
           {isOpen && user && (
-            <div className="absolute flex flex-col h-40 w-64 top-26 right-0 z-40 space-y-4 bg-white rounded py-6 px-4">
+            <div className="absolute top-16 flex flex-col h-40 w-64 lg:top-26 right-0 z-40 space-y-4 bg-white rounded py-6 px-4">
               <Link
                 to="/orders"
+                onClick={()=>setIsOpen(false)}
                 className="underline cursor-pointer font-semibold hover:text-blue-500"
               >
                 Orders
