@@ -74,10 +74,10 @@ const CategoriesButton = () => {
             onClick={() => handleCategoryClick(category.title)}
             className="flex flex-col gap-2  items-center cursor-pointer scale-80 transition-transform transform hover:scale-100 "
           >
-            <div className="flex w-60 items-center justify-center ">
-              <img src={category.img} alt="categories" className="h-40 w-full" />
+            <div className="flex w-60 items-center justify-center shadow-xl shadow-gray-500">
+              <img src={category.img} alt="categories" className="h-40" />
             </div>
-            <h1>{category.title}</h1>
+            <h1 className="font-semibold text-lg">{category.title}</h1>
           </button>
         ))}
       </div>

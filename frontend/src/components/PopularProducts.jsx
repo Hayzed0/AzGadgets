@@ -18,7 +18,7 @@ const PopularProducts = () => {
   const fetchPopularProduct = async () => {
     try {
       setLoading(true);
-      const res = await api.get("/api/products?limits=5");
+      const res = await api.get("/api/products");
       const resData = res.data;
       const filterProducts = resData.filter(
         (product) => product.popular === true
@@ -27,7 +27,7 @@ const PopularProducts = () => {
       setLoading(false);
     } catch (error) {
       setLoading(false);
-      setError(true)
+      setError(true);
       console.error(error.message);
     }
   };
@@ -62,7 +62,9 @@ const PopularProducts = () => {
           )}
           {error && (
             <div>
-              <h1 className="text-3xl text-center text-red-500">Error occured whilst trying to load products... Try Again</h1>
+              <h1 className="text-3xl text-center text-red-500">
+                Error occured whilst trying to load products... Try Again
+              </h1>
             </div>
           )}
           <section className="relative flex items-center gap-12 ">
@@ -82,7 +84,7 @@ const PopularProducts = () => {
                 <div
                   key={product._id}
                   onClick={() => handlePopularClick(product._id)}
-                  className="flex flex-col gap-2 p-4 border border-gray-500 rounded-lg h-120 cursor-pointer scale-80 transition-transform transform hover:scale-100 "
+                  className="flex flex-col gap-2 p-4 border border-gray-500 shadow-lg shadow-gray-500 rounded-lg h-120 cursor-pointer scale-80 transition-transform transform hover:scale-100 "
                 >
                   <div className="flex flex-col w-60 space-y-4">
                     <div className="flex w-60 items-center justify-center mx-auto">

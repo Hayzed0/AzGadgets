@@ -16,7 +16,7 @@ const ProductsOnSale = () => {
   const fetchSaleProduct = async () => {
     try {
       setLoading(true);
-      const res = await api.get("/api/products?limits=5");
+      const res = await api.get("/api/products");
       const resData = res.data;
       const filterProducts = resData.filter(
         (product) => product.onSale === true
@@ -70,7 +70,7 @@ const ProductsOnSale = () => {
                 <div
                   key={index}
                   onClick={() => handleSaleClick(product._id)}
-                  className="flex flex-colgap-2 p-4 border border-gray-500 rounded-lg h-120 cursor-pointer scale-80 transition-transform transform hover:scale-90 "
+                  className="flex flex-col gap-2 p-4 border border-gray-500 shadow-lg shadow-gray-500 rounded-lg h-120 cursor-pointer scale-80 transition-transform transform hover:scale-90 "
                 >
                   <div className="flex flex-col w-60">
                     <div className="flex w-60 items-center justify-center mx-auto">
@@ -89,7 +89,7 @@ const ProductsOnSale = () => {
                       <h1 className="font-semibold text-2xl">
                         £{product.price}
                       </h1>
-                      <h1 className="text-red-700 font-semibold text-xl">
+                      <h1 className="text-red-700 font-semibold">
                         {" "}
                         save £
                         {((product.discount / 100) * product.price).toFixed(2)}
